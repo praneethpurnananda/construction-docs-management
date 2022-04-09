@@ -14,11 +14,12 @@ import { MatButtonModule } from '@angular/material/button';
 
 //components
 import { CommonLoginComponent } from './common-login/common-login.component';
+import { CommonRegistrationComponent } from './common-registration/common-registration.component';
 
 
 
 @NgModule({
-  declarations: [CommonLoginComponent],
+  declarations: [CommonLoginComponent, CommonRegistrationComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
