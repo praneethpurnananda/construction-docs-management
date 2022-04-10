@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 //components
 import { CommonLoginComponent } from './common-login/common-login.component';
 import { CommonRegistrationComponent } from './common-registration/common-registration.component';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,9 @@ import { CommonRegistrationComponent } from './common-registration/common-regist
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class InputFormsModule { }
