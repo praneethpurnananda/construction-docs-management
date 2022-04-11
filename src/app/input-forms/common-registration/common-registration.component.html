@@ -1,1 +1,48 @@
-<h1>hello world</h1>
+<section class="main-wrapper-section">
+    <div class="container">
+        <h1>Register an Account</h1>
+        <div class="fields">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>alternate_email</mat-icon>
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>visibility_off</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input type="text" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>visibility_off</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <button mat-flat-button color="primary" class="register-button">Click here to register</button>
+
+        <p>Already have an account? <a (click)="routerNavigate('login')" style="cursor: pointer;">Click here to
+                Login</a></p>
+    </div>
+</section>

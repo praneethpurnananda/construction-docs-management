@@ -5,33 +5,40 @@
             <p>To keep connected with us please login with your personal info</p>
 
             <p>Doesn't have an account </p>
-            <button mat-flat-button color="primary">Register</button>
+            <button mat-flat-button color="primary" (click)="routerNavigate('register')">Register</button>
         </div>
         <div class="wrapper-box right-container">
             <h1>User Login</h1>
             <p>some demo text hello world</p>
             <div class="form">
-                <form [formGroup]="loginForm"> 
-                <mat-form-field appearance="outline" >
-                    <mat-label>Phone Number</mat-label>
-                    <input type="text"  matInput placeholder="Placeholder" formControlName="phone">
-                    <mat-icon matSuffix>phone</mat-icon>
-                    <mat-error *ngIf="loginForm.controls.phone.hasError('required')">Phone number is required</mat-error>
-                    <mat-error *ngIf="loginForm.controls.phone.hasError('pattern')">Invalid Phone number </mat-error>
-                </mat-form-field>
+                <form [formGroup]="loginForm">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Phone Number</mat-label>
+                        <input type="text" matInput placeholder="Placeholder" formControlName="phone">
+                        <mat-icon matSuffix>phone</mat-icon>
+                        <mat-error *ngIf="loginForm.controls.phone.hasError('required')">Phone number is required
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.controls.phone.hasError('pattern')">Invalid Phone number
+                        </mat-error>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline"  >
-                    <mat-label>Password</mat-label>
-                    <input [type]="showPassword ? 'text' : 'password' " matInput placeholder="Placeholder" formControlName="password">
-                    <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility()">{{showPassword ? 'visibility':'visibility_off'}}</mat-icon>
-                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">Password is required</mat-error>
-                    <mat-error *ngIf="loginForm.controls.password.hasError('pattern')">Invalid Password</mat-error>
-                </mat-form-field>
-            </form>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input [type]="showPassword ? 'text' : 'password' " matInput placeholder="Placeholder"
+                            formControlName="password">
+                        <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility()">{{showPassword ?
+                            'visibility':'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="loginForm.controls.password.hasError('required')">Password is required
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.controls.password.hasError('pattern')">Invalid Password</mat-error>
+                    </mat-form-field>
+                </form>
             </div>
-            <button mat-flat-button color="primary" class="login-button" (click)="userLogin()" [disabled]="!loginForm.valid">Login</button>
+            <button mat-flat-button color="primary" class="login-button" (click)="userLogin()"
+                [disabled]="!loginForm.valid">Login</button>
 
-            <p>Forgot Password? <a>Click here to reset</a></p>
+            <p>Forgot Password? <a (click)="routerNavigate('forgot-password')" style="cursor: pointer;">Click here to
+                    reset</a></p>
         </div>
     </div>
 </section>
