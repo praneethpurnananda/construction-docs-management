@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //internal modules
 import { InputFormsModule } from './input-forms/input-forms.module';
-
+import { SharedModuleModule } from './shared-module/shared-module.module'
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { InputFormsModule } from './input-forms/input-forms.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    InputFormsModule
+    InputFormsModule,
+    SharedModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
