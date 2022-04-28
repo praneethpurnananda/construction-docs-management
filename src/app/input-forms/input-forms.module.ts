@@ -5,6 +5,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 //angular material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 //components
 import { CommonLoginComponent } from './common-login/common-login.component';
 import { CommonRegistrationComponent } from './common-registration/common-registration.component';
-import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CommonNewPasswordComponent } from './common-new-password/common-new-password.component';
 

@@ -2,7 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatTableModule } from '@angular/material/table'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 
 //components
@@ -13,11 +19,17 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent],
+  declarations: [  CreateUserComponent, ManageUserComponent, MainLayoutComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
-    MatTableModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule
   ],
   exports:[ManageUserComponent]
 })

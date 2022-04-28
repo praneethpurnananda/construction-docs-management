@@ -1,1 +1,59 @@
-<p>create-user works!</p>
+<h1>Registration</h1>
+<div class="form">
+    <form [formGroup]="RegistrationForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Users List</mat-label>
+            <mat-select formControlName="usersList">
+                <mat-option *ngFor="let i of usersList" [value]="i.value" >{{i.displayName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Firs Name</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="firstName">
+            <mat-error *ngIf="RegistrationForm.controls.firstName.hasError('required')">First name is required</mat-error>
+            <mat-error *ngIf="RegistrationForm.controls.firstName.hasError('pattern')">First name must contain only alphabetic characters</mat-error>
+            <mat-icon matSuffix>account_circle</mat-icon>         
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="lastName">
+            <mat-error *ngIf="RegistrationForm.controls.lastName.hasError('required')">Last name is required </mat-error>
+            <mat-error *ngIf="RegistrationForm.controls.lastName.hasError('pattern')">Last name must contain only alphabetic characters and must contain 2 characters</mat-error>
+            <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="phoneNumber">
+            <mat-error *ngIf="RegistrationForm.controls.phoneNumber.hasError('required')">Phone number is required</mat-error>
+            <mat-error *ngIf="RegistrationForm.controls.phoneNumber.hasError('pattern')">Invalid Phone number</mat-error>
+            <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="EmailAddress">
+            <mat-error *ngIf="RegistrationForm.controls.EmailAddress.hasError('email')">Invalid email</mat-error>
+            <mat-icon matSuffix>alternate_email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="password">
+            <mat-error *ngIf="RegistrationForm.controls.password.hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="RegistrationForm.controls.password.hasError('pattern')">Invalid Password</mat-error>
+            <mat-icon matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="confirmPassword">
+            <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('required')">ConfirmPassword is required</mat-error>
+            <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('pattern')">Invalid ConfirmPassword</mat-error>
+            <mat-icon matSuffix>visibility_off</mat-icon>
+        </mat-form-field>
+
+    </form>
+</div>
