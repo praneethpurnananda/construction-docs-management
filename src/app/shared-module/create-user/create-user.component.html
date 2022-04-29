@@ -41,19 +41,22 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Placeholder" formControlName="password">
+            <input [type]="showPassword ? 'text':'password'" matInput placeholder="Placeholder" formControlName="password">
             <mat-error *ngIf="RegistrationForm.controls.password.hasError('required')">Password is required</mat-error>
             <mat-error *ngIf="RegistrationForm.controls.password.hasError('pattern')">Invalid Password</mat-error>
-            <mat-icon matSuffix>visibility_off</mat-icon>
+            <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility()">{{showPassword ?
+                'visibility':'visibility_off'}}</mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input matInput placeholder="Placeholder" formControlName="confirmPassword">
+            <input [type]="showPassword2 ? 'text':'password'" matInput placeholder="Placeholder" formControlName="confirmPassword">
             <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('required')">ConfirmPassword is required</mat-error>
             <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('pattern')">Invalid ConfirmPassword</mat-error>
-            <mat-icon matSuffix>visibility_off</mat-icon>
+            <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility2()">{{showPassword2 ?
+                'visibility':'visibility_off'}}</mat-icon>
         </mat-form-field>
 
+        <button mat-raised-button color="primary"  (click)="regSubmitButton()" [disabled]="!RegistrationForm.valid">Create</button>
     </form>
 </div>

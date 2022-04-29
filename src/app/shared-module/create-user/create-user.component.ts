@@ -11,7 +11,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class CreateUserComponent implements OnInit {
 
   RegistrationForm: FormGroup;
-
+  showPassword:boolean=false;
+  showPassword2:boolean=false;
   usersList:any=[
     {displayName: 'Receptionist', value: 'receptionist'},
     {displayName: 'Employee', value: 'employee'},
@@ -35,7 +36,16 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  regSubmitButton(){
+console.warn(this.RegistrationForm.value);
+  }
 
+  passwordVisibility(){
+    this.showPassword=!this.showPassword;
+  }
+  passwordVisibility2(){
+    this.showPassword2=!this.showPassword2;
+  }
 }
 
 
