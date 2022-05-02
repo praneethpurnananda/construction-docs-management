@@ -11,41 +11,47 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class CreateUserComponent implements OnInit {
 
   RegistrationForm: FormGroup;
-  showPassword:boolean=false;
-  showPassword2:boolean=false;
-  usersList:any=[
-    {displayName: 'Receptionist', value: 'receptionist'},
-    {displayName: 'Employee', value: 'employee'},
-    {displayName: 'Client', value: 'client'},
+  showPassword: boolean = false;
+  showPassword2: boolean = false;
+  selectedUser: string = '';
+  usersList: any = [
+    { displayName: 'Receptionist', value: 'receptionist' },
+    { displayName: 'Employee', value: 'employee' },
+    { displayName: 'Client', value: 'client' },
   ]
 
 
 
-  constructor(private fb:FormBuilder, private router: Router) {
-    this.RegistrationForm=this.fb.group({
-      usersList:['',Validators.required],
-      firstName:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{1,}/)]],
-      lastName: ['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{2,}/)]],
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.RegistrationForm = this.fb.group({
+      usersList: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{1,}/)]],
+      lastName: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{2,}/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
-      EmailAddress: ['',[Validators.email]],
-      password:['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
-      confirmPassword:['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]]
+      EmailAddress: ['', [Validators.email]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
+      confirmPassword: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]]
     })
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  regSubmitButton(){
-console.warn(this.RegistrationForm.value);
+  regSubmitButton() {
+    console.warn(this.RegistrationForm.value);
   }
 
-  passwordVisibility(){
-    this.showPassword=!this.showPassword;
+  passwordVisibility() {
+    this.showPassword = !this.showPassword;
   }
-  passwordVisibility2(){
-    this.showPassword2=!this.showPassword2;
+  passwordVisibility2() {
+    this.showPassword2 = !this.showPassword2;
   }
+
+  userSelect() {
+    this.selectedUser = this.RegistrationForm.value.usersList;
+  }
+
 }
 
 

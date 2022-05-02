@@ -9,12 +9,13 @@ import { SharedModuleModule }from '../shared-module/shared-module.module'
 
 //components
 import { UserManagementComponent } from './user-management/user-management.component';
+import { ProjectManagementComponent } from './project-management/project-management.component';
 
 
 
 
 @NgModule({
-  declarations: [UserManagementComponent],
+  declarations: [UserManagementComponent, ProjectManagementComponent],
   imports: [
     CommonModule,
     MatButtonModule,
