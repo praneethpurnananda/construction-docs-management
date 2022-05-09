@@ -1,1 +1,61 @@
-<p>create-project works!</p>
+<form [formGroup]="createProjectForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Type of project</mat-label>
+        <mat-select formControlName="typeOfProject" (selectionChange)="selectedProjects()">
+            <mat-option *ngFor="let i of seletedProject" [value]="i.value">{{i.displayName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+
+<!-- <input type="file" (change)="upload($event.target.files)">
+
+<button (click)="submitFile()">submut</button> -->
+<div *ngIf="createProjectForm.value.typeOfProject == 'municipalitySubmission' ">
+    <form [formGroup]="municipalitySubmissionForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Type of Municipality Submission</mat-label>
+            <mat-select formControlName="typeOfMunicipality">
+                <mat-option *ngFor="let i of seletedMunicipalityType" [value]="i.value">{{i.displayMunicipality}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>  
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="createProjectForm.value.typeOfProject != '' && !errorMessage " >
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nameOfDocument">
+    <th mat-header-cell *matHeaderCellDef> Name of Document </th>
+    <td mat-cell *matCellDef="let element"> {{element.nameOfDocument}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="uploadFile">
+        <th mat-header-cell *matHeaderCellDef> File Upload </th>
+        <td mat-cell *matCellDef="let element"> 
+            <input type="file">
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="uploadStatus">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>    
+        </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+  
+
+<div *ngIf="errorMessage">
+    invalid type of project selected
+</div>
+  
+  <div *ngIf="createProjectForm.value.typeOfProject == '' ">
+      Select any project
+  </div>

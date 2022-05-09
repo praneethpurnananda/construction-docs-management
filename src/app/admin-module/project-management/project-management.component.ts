@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-management',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) {
+
+   }
 
   ngOnInit(): void {
   }
-
+  
+  navigate(url:string){
+    this.router.navigate([url])
+  }
 }

@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 //components
@@ -40,7 +41,8 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressBarModule
   ],
   exports: [ManageUserComponent]
 })

@@ -10,6 +10,7 @@ import { MainLayoutComponent } from './shared-module/main-layout/main-layout.com
 import { CreateUserComponent } from './shared-module/create-user/create-user.component'
 import { CommonDashboardComponent } from './shared-module/common-dashboard/common-dashboard.component';
 import { ProjectManagementComponent } from './admin-module/project-management/project-management.component';
+import { CreateProjectComponent } from './shared-module/create-project/create-project.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: 'projet-management', component: ProjectManagementComponent },
       { path: 'dashboard', component: CommonDashboardComponent },
       { path: 'user-management', component: UserManagementComponent },
-      { path: 'create-user', component: CreateUserComponent }
+      { path: 'create-user', component: CreateUserComponent },
+      { path: 'create-project', component:CreateProjectComponent}
     ]
   }
 ];
