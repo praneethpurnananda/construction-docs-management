@@ -22,12 +22,15 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { CommonDashboardComponent } from './common-dashboard/common-dashboard.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { ManageProjectComponent } from './manage-project/manage-project.component';
+import { ProjectDetailedViewComponent } from './project-detailed-view/project-detailed-view.component';
+import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
 
 
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent],
+  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -44,6 +47,6 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     MatSidenavModule,
     MatProgressBarModule
   ],
-  exports: [ManageUserComponent]
+  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent ]
 })
 export class SharedModuleModule { }

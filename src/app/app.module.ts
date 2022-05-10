@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputFormsModule } from './input-forms/input-forms.module';
 import { SharedModuleModule } from './shared-module/shared-module.module';
 import { AdminModuleModule } from './admin-module/admin-module.module';
+import { ReceptionistModuleModule } from './receptionist-module/receptionist-module.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AdminModuleModule } from './admin-module/admin-module.module';
     BrowserAnimationsModule,
     InputFormsModule,
     SharedModuleModule,
-    AdminModuleModule
+    AdminModuleModule,
+    ReceptionistModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

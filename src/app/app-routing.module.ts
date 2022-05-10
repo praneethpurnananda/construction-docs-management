@@ -11,6 +11,13 @@ import { CreateUserComponent } from './shared-module/create-user/create-user.com
 import { CommonDashboardComponent } from './shared-module/common-dashboard/common-dashboard.component';
 import { ProjectManagementComponent } from './admin-module/project-management/project-management.component';
 import { CreateProjectComponent } from './shared-module/create-project/create-project.component';
+import { ProjectDetailedViewComponent } from './shared-module/project-detailed-view/project-detailed-view.component';
+import { PaymentManagementComponent } from './admin-module/payment-management/payment-management.component';
+
+//reception module components
+import { ReceptionProjectManagementComponent } from './receptionist-module/project-management/project-management.component';
+import { ReceptionUerManagementComponent } from './receptionist-module/uer-management/uer-management.component';
+import { ReceptionPaymentManagementComponent } from './receptionist-module/payment-management/payment-management.component'
 
 
 const routes: Routes = [
@@ -19,6 +26,7 @@ const routes: Routes = [
   { path: 'register', component: CommonRegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'new-password', component: CommonNewPasswordComponent },
+  
   {
     path: 'admin',
     component: MainLayoutComponent,
@@ -27,9 +35,29 @@ const routes: Routes = [
       { path: 'dashboard', component: CommonDashboardComponent },
       { path: 'user-management', component: UserManagementComponent },
       { path: 'create-user', component: CreateUserComponent },
-      { path: 'create-project', component:CreateProjectComponent}
+      { path: 'create-project', component:CreateProjectComponent},
+      { path: 'payment-management', component:PaymentManagementComponent}
     ]
-  }
+  },
+  {
+    path: 'reception',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'projet-management', component: ReceptionProjectManagementComponent },
+      { path: 'dashboard', component: CommonDashboardComponent },
+      { path: 'user-management', component: ReceptionUerManagementComponent },
+      { path: 'create-user', component: CreateUserComponent },
+      { path: 'create-project', component:CreateProjectComponent},
+      { path: 'payment-management', component:ReceptionPaymentManagementComponent}
+    ]
+  },
+  {
+    path: 'project',
+    component: MainLayoutComponent,
+    children:[
+      { path: 'details/:id', component:ProjectDetailedViewComponent},
+    ]
+  },
 ];
 
 @NgModule({

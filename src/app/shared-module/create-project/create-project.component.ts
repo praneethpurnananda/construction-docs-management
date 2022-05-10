@@ -13,7 +13,7 @@ export interface dataElements{
 export class CreateProjectComponent implements OnInit {
 
   displayedColumns: string[] = [ 'nameOfDocument','uploadFile','uploadStatus'];
-  dataSource :dataElements[] | undefined;
+  datasource :dataElements[] = [];
   errorMessage: boolean = false;
   municipalityDocuments = [
     { nameOfDocument:'Dcouments'},
@@ -97,16 +97,16 @@ export class CreateProjectComponent implements OnInit {
   selectedProjects(){
     this.errorMessage = false;
     if(this.createProjectForm.value.typeOfProject === 'municipalitySubmission'){
-      this.dataSource = this.municipalityDocuments;
+      this.datasource = this.municipalityDocuments;
     }
     else if(this.createProjectForm.value.typeOfProject === 'layoutSubmission'){
-      this.dataSource = this.layoutDocuments;
+      this.datasource = this.layoutDocuments;
     }
     else if(this.createProjectForm.value.typeOfProject === 'presentations'){
-      this.dataSource = this.presentations;
+      this.datasource = this.presentations;
     }
     else if(this.createProjectForm.value.typeOfProject === 'estimations&Valuetions'){
-      this.dataSource = this.estimationsValuetions;
+      this.datasource = this.estimationsValuetions;
     }
     else{
       this.errorMessage = true;

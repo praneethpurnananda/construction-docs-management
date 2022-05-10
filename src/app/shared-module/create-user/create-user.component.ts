@@ -14,11 +14,12 @@ export class CreateUserComponent implements OnInit {
   showPassword: boolean = false;
   showPassword2: boolean = false;
   selectedUser: string = '';
-  usersList: any = [
+  usersList: any =[
     { displayName: 'Receptionist', value: 'receptionist' },
     { displayName: 'Employee', value: 'employee' },
     { displayName: 'Client', value: 'client' },
   ]
+   
 
 
 
@@ -35,6 +36,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   regSubmitButton() {
