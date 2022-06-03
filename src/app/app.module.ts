@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,9 +15,12 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
 import { AdminModuleModule } from './admin-module/admin-module.module';
 import { ReceptionistModuleModule } from './receptionist-module/receptionist-module.module';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,8 @@ import { ReceptionistModuleModule } from './receptionist-module/receptionist-mod
     InputFormsModule,
     SharedModuleModule,
     AdminModuleModule,
-    ReceptionistModuleModule
+    ReceptionistModuleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

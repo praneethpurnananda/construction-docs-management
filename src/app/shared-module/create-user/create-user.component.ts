@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms'; 
+
+import { BackendApiService } from '../../backend-api.service';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class CreateUserComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private backend:BackendApiService) {
     this.RegistrationForm = this.fb.group({
       usersList: ['', Validators.required],
       firstName: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{1,}/)]],
@@ -41,6 +43,8 @@ export class CreateUserComponent implements OnInit {
 
   regSubmitButton() {
     console.warn(this.RegistrationForm.value);
+  
+    this.router.navigate(['admin/user-management']);
   }
 
   passwordVisibility() {
@@ -53,6 +57,8 @@ export class CreateUserComponent implements OnInit {
   userSelect() {
     this.selectedUser = this.RegistrationForm.value.usersList;
   }
+
+
 
 }
 

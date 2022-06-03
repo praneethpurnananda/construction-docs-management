@@ -1,4 +1,7 @@
+import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+
+import { BackendApiService } from '../../backend-api.service';
 
 
 @Component({
@@ -7,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-user.component.css']
 })
 export class ManageUserComponent implements OnInit {
+  user:any={};
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = [
     {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -21,9 +26,10 @@ export class ManageUserComponent implements OnInit {
     {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
   ];
 
-  constructor() { }
+  constructor(private backend:BackendApiService) { }
 
   ngOnInit(): void {
+  
   }
 
 }

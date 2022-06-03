@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 //components
@@ -25,12 +26,13 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { ManageProjectComponent } from './manage-project/manage-project.component';
 import { ProjectDetailedViewComponent } from './project-detailed-view/project-detailed-view.component';
 import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
+import { PreloderComponent } from './preloder/preloder.component';
 
 
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent],
+  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -45,8 +47,9 @@ import { ManagePaymentComponent } from './manage-payment/manage-payment.componen
     MatToolbarModule,
     MatMenuModule,
     MatSidenavModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
-  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent ]
+  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent, PreloderComponent ]
 })
 export class SharedModuleModule { }

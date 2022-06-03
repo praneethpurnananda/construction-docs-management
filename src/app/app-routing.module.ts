@@ -14,10 +14,12 @@ import { CreateProjectComponent } from './shared-module/create-project/create-pr
 import { ProjectDetailedViewComponent } from './shared-module/project-detailed-view/project-detailed-view.component';
 import { PaymentManagementComponent } from './admin-module/payment-management/payment-management.component';
 
+
 //reception module components
 import { ReceptionProjectManagementComponent } from './receptionist-module/project-management/project-management.component';
 import { ReceptionUerManagementComponent } from './receptionist-module/uer-management/uer-management.component';
 import { ReceptionPaymentManagementComponent } from './receptionist-module/payment-management/payment-management.component'
+
 
 
 const routes: Routes = [
@@ -58,6 +60,23 @@ const routes: Routes = [
       { path: 'details/:id', component:ProjectDetailedViewComponent},
     ]
   },
+  {
+    path: 'customer',
+    component:MainLayoutComponent,
+    // children:[
+    //   { path: 'dashboard'}
+    //   { path: 'projects'}
+    // ]
+  },
+  {
+    path: 'employee',
+    component:MainLayoutComponent,
+     // children:[
+    //   { path: 'dashboard'}
+    //   { path: 'customer-details'}
+    // ]
+  }
+
 ];
 
 @NgModule({
