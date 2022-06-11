@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 //components
@@ -27,12 +28,13 @@ import { ManageProjectComponent } from './manage-project/manage-project.componen
 import { ProjectDetailedViewComponent } from './project-detailed-view/project-detailed-view.component';
 import { ManagePaymentComponent } from './manage-payment/manage-payment.component';
 import { PreloderComponent } from './preloder/preloder.component';
+import { CommonApiResponceUiComponent } from './common-api-responce-ui/common-api-responce-ui.component';
 
 
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent],
+  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -48,8 +50,9 @@ import { PreloderComponent } from './preloder/preloder.component';
     MatMenuModule,
     MatSidenavModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
-  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent, PreloderComponent ]
+  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent,]
 })
 export class SharedModuleModule { }

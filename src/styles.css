@@ -3,3 +3,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; }
+.notification-css{
+    background-color: green;
+    padding: 0px !important;
+    border-radius: 5px;
+}
