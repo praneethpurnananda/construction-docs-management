@@ -1,17 +1,24 @@
 
 .cancle{
   float: right;
+  position: relative;
 }
 .thickness{
   width: 3%;
   position: absolute;
   height: 100%;
   background-color: red;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 3px 0px 0px 3px;
 }
 .text{
   text-align: center;
   margin: 15%;
   background-color: blue;
+}
+.subtext{
+  margin-left: 15%;
+  background-color: black;
+  display: table;
+  font-size: x-small;
 }
 

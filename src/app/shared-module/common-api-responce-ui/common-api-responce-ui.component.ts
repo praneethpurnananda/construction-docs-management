@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-common-api-responce-ui',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./common-api-responce-ui.component.css']
 })
 export class CommonApiResponceUiComponent implements OnInit {
+  
 
-  constructor() { }
+  constructor(private _snakBar:MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+  cancel(){
+    this._snakBar.dismiss();
   }
 
 }
