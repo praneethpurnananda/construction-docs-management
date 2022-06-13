@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_SNACK_BAR_DATA} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -10,10 +11,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CommonApiResponceUiComponent implements OnInit {
   
 
-  constructor(private _snakBar:MatSnackBar) { }
+  constructor(private _snakBar:MatSnackBar,@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
+  
   cancel(){
     this._snakBar.dismiss();
   }
