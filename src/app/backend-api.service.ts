@@ -23,6 +23,12 @@ export class BackendApiService {
     })
   }
 
+  //otp
+  Otp(otpform:any){
+    return this.httpclient.post('http://localhost:3000/users/verifyotp', otpform,{
+      observe: 'body'
+    })
+  }
   //internal methods
   snakBarMethod(message:any,status:boolean){
     let snackbarClassName = status ? 'success-snackbar' : 'error-snackbar';

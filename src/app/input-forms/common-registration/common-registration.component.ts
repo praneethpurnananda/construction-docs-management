@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { BackendApiService} from '../../backend-api.service';
+import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
 
 @Component({
   selector: 'app-common-registration',
@@ -12,8 +14,9 @@ import { BackendApiService} from '../../backend-api.service';
 
 export class CommonRegistrationComponent implements OnInit {
   registrationForm: FormGroup;
+  displayOtp:boolean=false;
 
-  constructor(private fb: FormBuilder, private router: Router,private backEndApi:BackendApiService) {
+  constructor(private fb: FormBuilder, private router: Router,private backEndApi:BackendApiService, private matdialog:MatDialog) {
     this.registrationForm = this.fb.group({
       firstName:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{1,}/)]],
       lastName: ['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{2,}/)]],
@@ -39,14 +42,24 @@ export class CommonRegistrationComponent implements OnInit {
     }
     this.backEndApi.registerUser(backendRegister).subscribe(
       (data: any) =>{
-        console.log(data)
+        console.log(data);
+        if(data.status==true && data.otpStatus==true){
+          this.displayOtp=true;
+          const dialogRef = this.matdialog.open(OtpComponet, {
+            width : '500px',
+            data : this.registrationForm.value.phoneNumber
+          });
+        }
+        else{
+          this.displayOtp=false;
+        }
       },
       (error :any) =>{
-        console.error(error)
+        console.error(error);
+        this.displayOtp=false;
       }
     )
   }
 }
-
 
 

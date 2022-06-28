@@ -62,7 +62,7 @@
                     <mat-icon matSuffix>visibility_off</mat-icon>
                 </mat-form-field>
             </form>
-            <button mat-flat-button color="primary" class="register-button" (click)="registrationUser()">Click here to
+            <button mat-flat-button color="primary" [disabled]="!registrationForm.valid" class="register-button" (click)="registrationUser()">Click here to
                 register</button>
         </div>
 
