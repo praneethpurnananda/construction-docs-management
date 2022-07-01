@@ -43,7 +43,10 @@ export class CommonRegistrationComponent implements OnInit {
     this.backEndApi.registerUser(backendRegister).subscribe(
       (data: any) =>{
         console.log(data);
-        if(data.status==true && data.otpStatus==true){
+        console.log("=============================");
+        if(data.status==true){
+          console.log("---------------------");
+          if(data.otpStatus==true){
           this.displayOtp=true;
           const dialogRef = this.matdialog.open(OtpComponet, {
             width : '500px',
@@ -51,12 +54,18 @@ export class CommonRegistrationComponent implements OnInit {
           });
         }
         else{
+          console.log("user successfully registered and there is an issue in otp generating");
+        }
+        }
+        else{
           this.displayOtp=false;
+          console.log("????????????????????????????????");
         }
       },
       (error :any) =>{
         console.error(error);
         this.displayOtp=false;
+        console.log("''''''''''''''''''''''''''''''''''''''");
       }
     )
   }
