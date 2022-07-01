@@ -40,32 +40,32 @@ export class CommonRegistrationComponent implements OnInit {
       "first_name":this.registrationForm.value.firstName, "last_name":this.registrationForm.value.lastName, "email": this.registrationForm.value.EmailAddress,
       "phone_number":this.registrationForm.value.phoneNumber, "password":this.registrationForm.value.password
     }
+
     this.backEndApi.registerUser(backendRegister).subscribe(
       (data: any) =>{
-        console.log(data);
-        console.log("=============================");
         if(data.status==true){
-          console.log("---------------------");
           if(data.otpStatus==true){
-          this.displayOtp=true;
-          const dialogRef = this.matdialog.open(OtpComponet, {
-            width : '500px',
-            data : this.registrationForm.value.phoneNumber
-          });
+            this.displayOtp=true;
+            const dialogRef = this.matdialog.open(OtpComponet, {
+              width : '500px',
+              data : this.registrationForm.value.phoneNumber
+            });
+            this.backEndApi.snakBarMethod(data["message"],data["otpStatus"]);
+          }
+          else{
+            //bookmark2
+            this.backEndApi.snakBarMethod(data["message"],data["otpStatus"]);
+          }
         }
         else{
-          console.log("user successfully registered and there is an issue in otp generating");
-        }
-        }
-        else{
-          this.displayOtp=false;
-          console.log("????????????????????????????????");
+         //we need to print error messages
+         //bookmark1
+         this.backEndApi.snakBarMethod(data["message"],data["status"]);
         }
       },
       (error :any) =>{
         console.error(error);
-        this.displayOtp=false;
-        console.log("''''''''''''''''''''''''''''''''''''''");
+        this.backEndApi.snakBarMethod(error.error.message,false);
       }
     )
   }
