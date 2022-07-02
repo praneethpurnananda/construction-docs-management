@@ -43,8 +43,8 @@ export class CommonRegistrationComponent implements OnInit {
 
     this.backEndApi.registerUser(backendRegister).subscribe(
       (data: any) =>{
-        if(data.status==true){
-          if(data.otpStatus==true){
+        if(data.status===true){
+          if(data.otpStatus===true){
             this.displayOtp=true;
             const dialogRef = this.matdialog.open(OtpComponet, {
               width : '500px',

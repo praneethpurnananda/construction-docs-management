@@ -16,7 +16,7 @@ export class CommonLoginComponent implements OnInit {
   showPassword: boolean = false;
   apiStatus:boolean = false;
   messageFromApi:any;
-
+  verfyOtpMessage:boolean=false;
 
 
   constructor(private fb: FormBuilder, private router: Router, private backendapi:BackendApiService) {
@@ -41,7 +41,15 @@ export class CommonLoginComponent implements OnInit {
       (data:any) => {
         console.log(data);
         this.apiStatus=false;
-        this.backendapi.snakBarMethod(data["message"],data["status"]);
+        if(data.status===true){
+          if(data.otpStatus===true){
+            this.backendapi.snakBarMethod(data["message"],data["status"]);
+          }
+          else{
+            this.backendapi.snakBarMethod(data["message"],data["status"]);
+            this.verfyOtpMessage=true;
+          }
+        }
       },
       (error: any) => {
         console.error(error);
