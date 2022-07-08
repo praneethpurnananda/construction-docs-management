@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+//import statemts for tocken decode
+import jwt_decode from 'jwt-decode';
+
 
 import { BackendApiService} from '../../backend-api.service';
+import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
 
 
 @Component({
@@ -17,9 +22,10 @@ export class CommonLoginComponent implements OnInit {
   apiStatus:boolean = false;
   messageFromApi:any;
   verfyOtpMessage:boolean=false;
+  displayOtp:boolean=false;
 
 
-  constructor(private fb: FormBuilder, private router: Router, private backendapi:BackendApiService) {
+  constructor(private fb: FormBuilder, private router: Router, private backendapi:BackendApiService, private matdialog:MatDialog) {
     this.loginForm = this.fb.group({
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
       password: ['', [Validators.required ]]
@@ -43,12 +49,22 @@ export class CommonLoginComponent implements OnInit {
         this.apiStatus=false;
         if(data.status===true){
           if(data.otpStatus===true){
+            console.log(data['token']);
+            console.log(jwt_decode(data['token']));
             this.backendapi.snakBarMethod(data["message"],data["status"]);
           }
           else{
             this.backendapi.snakBarMethod(data["message"],data["status"]);
             this.verfyOtpMessage=true;
+            this.displayOtp=true;
+            const dialogRef = this.matdialog.open(OtpComponet, {
+              width : '500px',
+              data : this.loginForm.value.phoneNumber
+            });
           }
+        }
+        else{
+          this.backendapi.snakBarMethod(data["message"],data["status"]);
         }
       },
       (error: any) => {
