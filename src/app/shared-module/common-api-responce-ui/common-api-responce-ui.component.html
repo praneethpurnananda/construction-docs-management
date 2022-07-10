@@ -1,6 +1,10 @@
-<span class="notification">
-    <span class="thickness">&nbsp;</span>
-    <span class="text">{{data.message}}</span>
-    <div class="subtext">this is subtext</div>
-    <span class="cancle"><mat-icon matSuffix (click)="cancel()" style="cursor: pointer;">clear</mat-icon></span>
-</span>
+<div class="main-div">
+    <div class="icon-section"
+        [ngClass]="data.status === true ? 'success-message icon-section' : 'error-message icon-section' ">
+        <mat-icon *ngIf="data.status === true">done</mat-icon>
+        <mat-icon *ngIf="data.status === false">info</mat-icon>
+    </div>
+    <div class="message-section">
+        {{data.message}}
+    </div>
+</div>

@@ -1,22 +1,37 @@
-.cancle{
-  float: right;
-}
-.thickness{
-  width: 3%;
-  position: absolute;
-  height: 100%;
-  background-color: red;
-  border-radius: 3px 0px 0px 3px;
-}
-.text{
+.main-div{
+  width: 400px;
+  margin: 0 auto;
   text-align: center;
-  margin: 15%;
-  background-color: blue;
-}
-.subtext{
-  margin-left: 15%;
-  background-color: black;
-  display: table;
-  font-size: x-small;
 }
 
+.icon-section{
+  width: 60px;
+  height: 50px;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.message-section{
+  height: 50px;
+  margin-left: 65px;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.success-message{
+  background-color: green;
+}
+
+.error-message{
+  background-color: rgb(255, 55, 55);
+}
+
+.error-message mat-icon{
+  color: #fff;
+}

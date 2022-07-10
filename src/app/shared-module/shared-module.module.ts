@@ -14,9 +14,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 //components
@@ -36,7 +35,7 @@ import { OtpComponet } from './popups/opt.component';
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent,OtpComponet],
+  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent, OtpComponet],
   imports: [
     CommonModule,
     AppRoutingModule,
@@ -52,11 +51,10 @@ import { OtpComponet } from './popups/opt.component';
     MatMenuModule,
     MatSidenavModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule
-    
+
   ],
-  exports: [ ManageUserComponent ,ManageProjectComponent,ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent]
+  exports: [ManageUserComponent, ManageProjectComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent]
 })
 export class SharedModuleModule { }

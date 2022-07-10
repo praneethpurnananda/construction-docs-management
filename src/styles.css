@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800'); */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 html, body { height: 100%; }
 body { margin: 0; }
@@ -7,12 +8,13 @@ body { margin: 0; }
 .notification-css{
     padding: 0px !important;
     border-radius: 5px;
+    background-color: black;
 }
 
 .success-snackbar{
-    background-color: green;
+
 }
 
 .error-snackbar{
-    background-color: red;
+
 }
