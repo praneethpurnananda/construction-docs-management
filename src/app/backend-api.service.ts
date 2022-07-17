@@ -19,7 +19,8 @@ export class BackendApiService {
 
   loginUser(loginDetails: any){
     return this.httpclient.post('http://localhost:3000/users/login', loginDetails,{
-      observe: 'body'
+      observe: 'body',
+      headers: new HttpHeaders().append('x-access-token',  sessionStorage.getItem('token') || '')
     })
   }
 

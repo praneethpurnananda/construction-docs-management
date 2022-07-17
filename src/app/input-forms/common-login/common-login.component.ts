@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 
+
 import { BackendApiService } from '../../backend-api.service';
 import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
+
 
 
 @Component({
@@ -48,6 +50,7 @@ export class CommonLoginComponent implements OnInit {
           if (data.otpStatus === true) {
             console.log(data['token']);
             this.backendapi.snakBarMethod(data["message"], data["status"]);
+            sessionStorage.setItem('token',data['token']);
           }
           else {
             this.backendapi.snakBarMethod(data["message"], data["status"]);
