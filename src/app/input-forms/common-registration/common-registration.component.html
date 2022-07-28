@@ -1,3 +1,4 @@
+<app-preloder *ngIf="isLoading"></app-preloder>
 <section class="main-wrapper-section">
     <div class="container">
         <h1>Register an Account</h1>
@@ -19,7 +20,7 @@
                     <mat-error *ngIf="registrationForm.controls.lastName.hasError('required')">Last name is required
                     </mat-error>
                     <mat-error *ngIf="registrationForm.controls.lastName.hasError('pattern')">Last name must contain
-                        only alphabetic characters and must contain 2 characters</mat-error>
+                        only alphabetic characters</mat-error>
                     <mat-icon matSuffix>account_circle</mat-icon>
                 </mat-form-field>
 
@@ -44,25 +45,30 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input type="text" matInput placeholder="Placeholder" formControlName="password">
+                    <input [type]="showPasswordOne ? 'text' : 'password' " matInput placeholder="Placeholder"
+                        formControlName="password">
                     <mat-error *ngIf="registrationForm.controls.password.hasError('required')">Password is required
                     </mat-error>
                     <mat-error *ngIf="registrationForm.controls.password.hasError('pattern')">Invalid Password
                     </mat-error>
-                    <mat-icon matSuffix>visibility_off</mat-icon>
+                    <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibilityOne()">{{showPasswordOne ?
+                        'visibility':'visibility_off'}}</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Confirm Password</mat-label>
-                    <input type="text" matInput placeholder="Placeholder" formControlName="confirmPassword">
+                    <input [type]="showPasswordTwo ? 'text' : 'password' " matInput placeholder="Placeholder"
+                        formControlName="confirmPassword">
                     <mat-error *ngIf="registrationForm.controls.confirmPassword.hasError('required')">ConfirmPassword is
                         required</mat-error>
                     <mat-error *ngIf="registrationForm.controls.confirmPassword.hasError('required')">Password and
                         confirm password must match </mat-error>
-                    <mat-icon matSuffix>visibility_off</mat-icon>
+                    <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibilityTwo()">{{showPasswordTwo ?
+                        'visibility':'visibility_off'}}</mat-icon>
                 </mat-form-field>
             </form>
-            <button mat-flat-button color="primary" [disabled]="!registrationForm.valid" class="register-button" (click)="registrationUser()">Click here to
+            <button mat-flat-button color="primary" [disabled]="!registrationForm.valid" class="register-button"
+                (click)="registrationUser()">Click here to
                 register</button>
         </div>
 

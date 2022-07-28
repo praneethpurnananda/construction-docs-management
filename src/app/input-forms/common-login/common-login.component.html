@@ -1,4 +1,4 @@
-<app-preloder *ngIf="apiStatus"></app-preloder>
+<app-preloder *ngIf="isLoading"></app-preloder>
 <section class="main-wrapper-section">
     <div class="container">
         <div class="wrapper-box left-container">
@@ -39,7 +39,7 @@
                 (click)="userLogin()">Login</button>
             <p>Forgot Password? <a (click)="routerNavigate('forgot-password')" style="cursor: pointer;">Click here to
                     reset</a></p>
-            <p *ngIf="verfyOtpMessage">click here to verfy otp</p>
+            <p *ngIf="verfyOtpMessage" (click)="otpVerifyBox()">click here to verfy otp</p>
         </div>
     </div>
 </section>
