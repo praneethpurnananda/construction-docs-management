@@ -17,10 +17,23 @@ export class BackendApiService {
     })
   }
 
+  adduser(RegistrationForm:any){
+    return this.httpclient.post('http://localhost:3000/users/adduser',RegistrationForm,{
+      observe:'body'
+    })
+  }
+
   loginUser(loginDetails: any){
     return this.httpclient.post('http://localhost:3000/users/login', loginDetails,{
       observe: 'body',
       headers: new HttpHeaders().append('x-access-token',  sessionStorage.getItem('token') || '')
+    })
+  }
+  //geting user list 
+  getuserlist(){
+    return this.httpclient.get<any>('http://localhost:3000/users/allroles',{
+      observe: 'body'
+
     })
   }
 
