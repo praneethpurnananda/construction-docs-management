@@ -76,19 +76,25 @@ export class CommonLoginComponent implements OnInit {
 
   otpVerifyBox() {
     this.isLoading = true;
-    this.verfyOtpMessage = false;
     let userDetails = {
       phone_number: this.loginForm.value.phone
     };
-    this.backendapi.resentOtp(userDetails).subscribe(
+    this.backendapi.resendOtp(userDetails).subscribe(
       (data: any) => {
         if ('status' in data && data.status === true) {
           this.backendapi.snakBarMethod(data["message"], data["status"]);
           const dialogRef = this.matdialog.open(OtpComponet, {
             width: '500px',
-            data: this.loginForm.value.phone,
+            data: { "phone_number": this.loginForm.value.phone },
             disableClose: true
-          })
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(result);
+            if (result && result.event != undefined && result.event != null && result.event === 'cancel')
+              this.verfyOtpMessage = true;
+            else
+              this.verfyOtpMessage = false;
+          });
         }
         else {
           this.backendapi.snakBarMethod(data["message"], data["status"]);
