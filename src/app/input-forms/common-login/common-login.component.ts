@@ -19,10 +19,8 @@ export class CommonLoginComponent implements OnInit {
 
   loginForm: FormGroup;
   showPassword: boolean = false;
-  apiStatus: boolean = false;
-  messageFromApi: any;
+  isLoading: boolean = false;
   verfyOtpMessage: boolean = false;
-  displayOtp: boolean = false;
 
 
   constructor(private fb: FormBuilder, private router: Router, private backendapi: BackendApiService, private matdialog: MatDialog) {
@@ -34,42 +32,73 @@ export class CommonLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiStatus = false;
+    this.isLoading = false;
+    this.verfyOtpMessage = false;
   }
 
   userLogin() {
-    this.apiStatus = true;
+    this.isLoading = true;
     let backendLogin = {
       "phone_number": this.loginForm.value.phone, "password": this.loginForm.value.password
     }
     this.backendapi.loginUser(backendLogin).subscribe(
       (data: any) => {
-        console.log(data);
-        this.apiStatus = false;
         if (data.status === true) {
           if (data.otpStatus === true) {
-            console.log(data['token']);
+            if ('token' in data) {
+              sessionStorage.setItem('token', data['token']);
+            }
             this.backendapi.snakBarMethod(data["message"], data["status"]);
-            sessionStorage.setItem('token',data['token']);
+            this.backendapi.snakBarMethod('Login Failed! Please contact admin team', false);
           }
           else {
             this.backendapi.snakBarMethod(data["message"], data["status"]);
             this.verfyOtpMessage = true;
-            this.displayOtp = true;
-            const dialogRef = this.matdialog.open(OtpComponet, {
-              width: '500px',
-              data: this.loginForm.value.phoneNumber
-            });
           }
         }
         else {
           this.backendapi.snakBarMethod(data["message"], data["status"]);
         }
+        this.isLoading = false;
       },
       (error: any) => {
         console.error(error);
-        this.apiStatus = false;
         this.backendapi.snakBarMethod(error.error.message, false);
+        this.isLoading = false;
+
+        if ('status' in error.error && 'otpStatus' in error.error && error.error.otpStatus == false && error.error.status == true) {
+          this.verfyOtpMessage = true;
+        }
+
+      }
+    )
+  }
+
+  otpVerifyBox() {
+    this.isLoading = true;
+    this.verfyOtpMessage = false;
+    let userDetails = {
+      phone_number: this.loginForm.value.phone
+    };
+    this.backendapi.resentOtp(userDetails).subscribe(
+      (data: any) => {
+        if ('status' in data && data.status === true) {
+          this.backendapi.snakBarMethod(data["message"], data["status"]);
+          const dialogRef = this.matdialog.open(OtpComponet, {
+            width: '500px',
+            data: this.loginForm.value.phone,
+            disableClose: true
+          })
+        }
+        else {
+          this.backendapi.snakBarMethod(data["message"], data["status"]);
+        }
+        this.isLoading = false;
+      },
+      (error: any) => {
+        console.error(error);
+        this.backendapi.snakBarMethod(error.error.message, false);
+        this.isLoading = false;
       }
     )
   }
