@@ -4,7 +4,7 @@
         <mat-form-field appearance="outline">
             <mat-label>Users List</mat-label>
             <mat-select formControlName="usersList" (selectionChange)="userSelect()">
-                <mat-option *ngFor="let i of usersList" [value]="i.value">{{i.displayName}}</mat-option>
+                <mat-option *ngFor="let i of usersList" [value]="i.value">{{i.viewValue}}</mat-option>
             </mat-select>
         </mat-form-field>
 
