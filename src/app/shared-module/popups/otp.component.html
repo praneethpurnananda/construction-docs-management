@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Otp send to {{data}}, Please enter otp.</h1>
+<h1 mat-dialog-title>Otp send to {{data.phone_number}}, Please enter otp.</h1>
 <div mat-dialog-content>
     <form [formGroup]="otpform">
         <mat-form-field appearance="outline">
@@ -9,5 +9,10 @@
 </div>
 <div mat-dialog-actions>
 
-    <button mat-flat-button color="primary" [disabled]="!otpform.valid"  (click)="userOtp()">verify otp</button>
+    <button mat-flat-button color="primary" [disabled]="!otpform.valid" (click)="userOtp()">verify otp</button>
+    &nbsp;&nbsp;
+    <button mat-flat-button color="primary" [disabled]="timeLeft > 0" (click)="resendOtp()">Resend otp
+        ({{timeLeft}})</button>
+    &nbsp;&nbsp;
+    <button mat-flat-button color="warn" (click)="closeForm()">Close/Change Number</button>
 </div>

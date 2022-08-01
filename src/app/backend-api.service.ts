@@ -18,13 +18,13 @@ export class BackendApiService {
       observe: 'body'
     })
   }
-  
-  adduser(RegistrationForm:any){
-    return this.httpclient.post(`${this.URL}/adduser`,RegistrationForm,{
-      observe:'body'
+
+  adduser(RegistrationForm: any) {
+    return this.httpclient.post(`${this.URL}/adduser`, RegistrationForm, {
+      observe: 'body'
     })
   }
-  
+
   loginUser(loginDetails: any) {
     return this.httpclient.post(`${this.URL}/login`, loginDetails, {
       observe: 'body',
@@ -46,7 +46,7 @@ export class BackendApiService {
   }
 
   //resentOtp
-  resentOtp(userDetails: any) {
+  resendOtp(userDetails: any) {
     return this.httpclient.post(`${this.URL}/resendotp`, userDetails, {
       observe: 'body'
     })

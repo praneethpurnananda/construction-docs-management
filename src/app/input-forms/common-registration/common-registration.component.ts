@@ -58,7 +58,7 @@ export class CommonRegistrationComponent implements OnInit {
             this.displayOtp = true;
             const dialogRef = this.matdialog.open(OtpComponet, {
               width: '500px',
-              data: this.registrationForm.value.phoneNumber,
+              data: { phone_number: this.registrationForm.value.phoneNumber },
               disableClose: true
             });
             this.backEndApi.snakBarMethod(data["message"], data["otpStatus"]);
