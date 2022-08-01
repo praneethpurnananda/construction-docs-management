@@ -47,9 +47,12 @@ export class CommonLoginComponent implements OnInit {
           if (data.otpStatus === true) {
             if ('token' in data) {
               sessionStorage.setItem('token', data['token']);
+              this.backendapi.snakBarMethod(data["message"], data["status"]);
+              this.routerNavigate("admin/dashboard");
             }
-            this.backendapi.snakBarMethod(data["message"], data["status"]);
-            this.backendapi.snakBarMethod('Login Failed! Please contact admin team', false);
+            else{
+              this.backendapi.snakBarMethod('Login Failed! Please contact admin team', false);
+            }
           }
           else {
             this.backendapi.snakBarMethod(data["message"], data["status"]);

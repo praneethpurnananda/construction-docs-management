@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { BackendApiService } from '../../backend-api.service';
 import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
+import { passwordValidation } from 'src/app/common-files/passwordValidation';
 
 
 
@@ -16,6 +17,7 @@ import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
 export class CreateUserComponent implements OnInit {
 
   RegistrationForm: FormGroup;
+  message:string='';
   showPassword: boolean = false;
   showPassword2: boolean = false;
   selectedUser: string = '';
@@ -32,10 +34,14 @@ export class CreateUserComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
       EmailAddress: ['', [Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
-      confirmPassword: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]]
+      confirmPassword: ['', [Validators.required,passwordValidation, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]]
     })
+    this.RegistrationForm.controls.password.valueChanges
+      .subscribe(
+        x => this.RegistrationForm.controls.confirmPassword.updateValueAndValidity()
+      )
   }
-
+ 
   
 
   ngOnInit(): void {
@@ -45,7 +51,6 @@ export class CreateUserComponent implements OnInit {
 
   regSubmitButton() {
     console.warn(this.RegistrationForm.value);
-
     let backendRegister={
       "first_name":this.RegistrationForm.value.firstName, "last_name":this.RegistrationForm.value.lastName, "email": this.RegistrationForm.value.EmailAddress,
       "phone_number":this.RegistrationForm.value.phoneNumber, "password":this.RegistrationForm.value.password,"role_id":this.RegistrationForm.value.usersList
@@ -78,9 +83,9 @@ export class CreateUserComponent implements OnInit {
     this.showPassword2 = !this.showPassword2;
   }
 
-  // userSelect() {
-  //   this.selectedUser = this.RegistrationForm.value.usersList;
-  // }
+  userSelect() {
+    this.selectedUser = this.RegistrationForm.value.usersList;
+  }
 
   getfunction(){
    this.backend.getuserlist().subscribe(
@@ -102,7 +107,6 @@ export class CreateUserComponent implements OnInit {
     }
    )
   }
-
 
 }
 
