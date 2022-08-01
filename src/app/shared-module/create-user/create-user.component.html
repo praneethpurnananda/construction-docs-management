@@ -61,13 +61,14 @@
                 formControlName="confirmPassword">
             <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('required')">ConfirmPassword is
                 required</mat-error>
-            <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('pattern')">Invalid ConfirmPassword
+            <mat-error *ngIf="RegistrationForm.controls.confirmPassword.hasError('pattern')">Invalid ConfirmPassword or password
+                and confirmPassword are not same
             </mat-error>
             <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility2()">{{showPassword2 ?
                 'visibility':'visibility_off'}}</mat-icon>
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="regSubmitButton()"
-            [disabled]="!RegistrationForm.valid">Create {{selectedUser}}</button>
+            [disabled]="!RegistrationForm.valid ">Create </button>
     </form>
 </div>

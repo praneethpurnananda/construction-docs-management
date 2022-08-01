@@ -39,6 +39,12 @@ export class BackendApiService {
     })
   }
 
+  getuserlist(){
+    return this.httpclient.get(`${this.URL}/allroles`,{
+      observe: 'body'
+    })
+  }
+
   //resentOtp
   resendOtp(userDetails: any) {
     return this.httpclient.post(`${this.URL}/resendotp`, userDetails, {

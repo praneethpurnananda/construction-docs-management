@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { BackendApiService } from '../../backend-api.service';
 import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
+import { passwordValidation } from 'src/app/common-files/passwordValidation';
 
 @Component({
   selector: 'app-common-registration',
@@ -26,8 +27,12 @@ export class CommonRegistrationComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
       EmailAddress: ['', [Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
-      confirmPassword: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required,passwordValidation]],
     })
+    this.registrationForm.controls.password.valueChanges
+    .subscribe(
+      x => this.registrationForm.controls.confirmPassword.updateValueAndValidity()
+    )
   }
 
   ngOnInit(): void {

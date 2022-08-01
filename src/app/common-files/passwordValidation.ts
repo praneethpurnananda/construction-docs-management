@@ -1,26 +1,25 @@
-import { AbstractControl,ValidatorFn,FormControl,FormGroup } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
-export class passwordValidation{
+//Password Validation
+export function passwordValidation (control: AbstractControl){
 
-  constructor() {}
+  if(control && (control.value != null || control.value != undefined)){
 
-  static mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
+    const confirmPassword = control.value;
+    const passwordControl = control.root.get('password');
 
-      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-        return;
+    if(passwordControl){
+      const password = passwordControl.value;
+
+      if(password !== confirmPassword || password === ''){
+        return{
+          isError: true
+        };
       }
 
-      // set error on matchingControl if validation fails
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-      return null;
-    };
+    }
+
   }
 
+  return null;
 }
