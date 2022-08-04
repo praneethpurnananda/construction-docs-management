@@ -1,3 +1,4 @@
+<app-preloder *ngIf="isLoading"></app-preloder>
 <h1>Registration</h1>
 <div class="form">
     <form [formGroup]="RegistrationForm">
@@ -69,6 +70,6 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="regSubmitButton()"
-            [disabled]="!RegistrationForm.valid ">Create </button>
+            [disabled]="!RegistrationForm.valid">Create </button>
     </form>
 </div>

@@ -15,7 +15,7 @@ import { passwordValidation } from 'src/app/common-files/passwordValidation';
   styleUrls: ['./create-user.component.css']
 })
 export class CreateUserComponent implements OnInit {
-
+  isLoading: boolean = false;
   RegistrationForm: FormGroup;
   message:string='';
   showPassword: boolean = false;
@@ -45,11 +45,13 @@ export class CreateUserComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.isLoading = false;
     this.getfunction();
     
   }
 
   regSubmitButton() {
+    this.isLoading = true;
     console.warn(this.RegistrationForm.value);
     let backendRegister={
       "first_name":this.RegistrationForm.value.firstName, "last_name":this.RegistrationForm.value.lastName, "email": this.RegistrationForm.value.EmailAddress,
@@ -65,15 +67,18 @@ export class CreateUserComponent implements OnInit {
               data : this.RegistrationForm.value.phoneNumber
             });
             this.backend.snakBarMethod(data["message"],data["otpStatus"]);
+            this.isLoading = false;
           }
+          this.router.navigate(['admin/user-management']);
         }
       },
       (error:any) =>{
         console.error(error);
+        this.backend.snakBarMethod(error.error["message"],false);
+        this.isLoading = false;
       }
       )
-    
-   // this.router.navigate(['admin/user-management']);
+     
   }
 
   passwordVisibility() {
@@ -88,6 +93,7 @@ export class CreateUserComponent implements OnInit {
   }
 
   getfunction(){
+    
    this.backend.getuserlist().subscribe(
     (data:any) => {
       console.log(data);

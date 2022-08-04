@@ -25,6 +25,8 @@ export class BackendApiService {
     })
   }
 
+  
+
   loginUser(loginDetails: any) {
     return this.httpclient.post(`${this.URL}/login`, loginDetails, {
       observe: 'body',
@@ -45,9 +47,27 @@ export class BackendApiService {
     })
   }
 
+  getAllUsers(){
+    return this.httpclient.get(`${this.URL}/`,{
+      observe: 'body'
+    })
+  }
+
   //resentOtp
   resendOtp(userDetails: any) {
     return this.httpclient.post(`${this.URL}/resendotp`, userDetails, {
+      observe: 'body'
+    })
+  }
+
+  deleteuser(deleteUser:any){
+    return this.httpclient.post(`${this.URL}/deleteuser`,deleteUser,{
+    observe: 'body'
+    })
+  }
+
+  edituser(editElement:any){
+    return this.httpclient.post(`${this.URL}/edituser`,editElement,{
       observe: 'body'
     })
   }

@@ -2,6 +2,9 @@ import { formatCurrency } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 import { BackendApiService } from '../../backend-api.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import jwt_decode from 'jwt-decode';
+import { editUserPopupComponent } from '../../shared-module/popups/editUserPopup'
 
 
 @Component({
@@ -11,25 +14,60 @@ import { BackendApiService } from '../../backend-api.service';
 })
 export class ManageUserComponent implements OnInit {
   user:any={};
+  token:any={};
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['id', 'first_name', 'phone_number', 'email', 'role_id','delete', 'edit' ];
   dataSource = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+   
   ];
 
-  constructor(private backend:BackendApiService) { }
+  constructor(private backend:BackendApiService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.backenddata()
+  }
+  backenddata(){
+    this.backend.getAllUsers().subscribe(
+      (data:any) =>{
+        console.log(data);
+        this.dataSource=data;
+      },
+      (error:any) =>{
+        console.error(error);
+      }
+      
+    )
+  }
+  deleteUser(element:any){
+    let elementValue={"user_id":element['id']}
+    console.log(element);
+    this.backend.deleteuser(elementValue).subscribe(
+      (data:any) =>{
+        console.log(data)
+        if(data.status===true){
+          this.backenddata();
+        }
+      },
+      (error:any) =>{
+        console.error(error)
+      }
+      )
+  }
+  EditUser(element:any){
+    const dialogRef = this.dialog.open(editUserPopupComponent, {
+      width: '600px',
+      data: {"user_id":element['id'],"first_name":element['first_name'],"last_name":element['last_name'],"email":element['email'],"phone_number":element['phone_number'],"role_id":element["role_id"],"password":element['password']},
+      disableClose:true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
   
+    // let editedElements={"user_id":element['id'],"first_name":element['first_name'],"last_name":element['last_name'],"email":element['email'],"phone_number":element['phone_number'],"role_id":element["role_id"]}
+    // console.log(editedElements);
+    // this.backend.edituser(editedElements)
   }
 
 }

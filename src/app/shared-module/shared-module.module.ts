@@ -30,12 +30,13 @@ import { ManagePaymentComponent } from './manage-payment/manage-payment.componen
 import { PreloderComponent } from './preloder/preloder.component';
 import { CommonApiResponceUiComponent } from './common-api-responce-ui/common-api-responce-ui.component';
 import { OtpComponet } from './popups/opt.component';
+import { editUserPopupComponent } from './popups/editUserPopup'
 
 
 
 
 @NgModule({
-  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent, OtpComponet],
+  declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent, OtpComponet,editUserPopupComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
