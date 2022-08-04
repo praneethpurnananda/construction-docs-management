@@ -21,7 +21,7 @@ export class CommonLoginComponent implements OnInit {
   showPassword: boolean = false;
   isLoading: boolean = false;
   verfyOtpMessage: boolean = false;
-
+ 
 
   constructor(private fb: FormBuilder, private router: Router, private backendapi: BackendApiService, private matdialog: MatDialog) {
     this.loginForm = this.fb.group({
