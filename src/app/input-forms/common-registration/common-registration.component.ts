@@ -23,6 +23,7 @@ export class CommonRegistrationComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private backEndApi: BackendApiService, private matdialog: MatDialog) {
     this.registrationForm = this.fb.group({
       firstName: ['', [Validators.required]],
+      //Validators.pattern(/^[A-Za-z]+$/) only for char with out numbers and sepcal char
       lastName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
       EmailAddress: ['', [Validators.email]],

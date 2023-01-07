@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-
-
+import jwt_decode from 'jwt-decode';
 
 import { BackendApiService } from '../../backend-api.service';
 import { OtpComponet } from 'src/app/shared-module/popups/opt.component';
@@ -21,6 +20,7 @@ export class CommonLoginComponent implements OnInit {
   showPassword: boolean = false;
   isLoading: boolean = false;
   verfyOtpMessage: boolean = false;
+  token: String="";
  
 
   constructor(private fb: FormBuilder, private router: Router, private backendapi: BackendApiService, private matdialog: MatDialog) {
@@ -46,9 +46,12 @@ export class CommonLoginComponent implements OnInit {
         if (data.status === true) {
           if (data.otpStatus === true) {
             if ('token' in data) {
+              this.token=data['token'];
               sessionStorage.setItem('token', data['token']);
               this.backendapi.snakBarMethod(data["message"], data["status"]);
-              this.routerNavigate("admin/dashboard");
+              
+              console.log(jwt_decode(data['token']));
+              this.routerNavigate("u/admin/dashboard");
             }
             else{
               this.backendapi.snakBarMethod('Login Failed! Please contact admin team', false);
@@ -65,7 +68,6 @@ export class CommonLoginComponent implements OnInit {
         this.isLoading = false;
       },
       (error: any) => {
-        console.error(error);
         this.backendapi.snakBarMethod(error.error.message, false);
         this.isLoading = false;
 
@@ -92,7 +94,6 @@ export class CommonLoginComponent implements OnInit {
             disableClose: true
           });
           dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
             if (result && result.event != undefined && result.event != null && result.event === 'cancel')
               this.verfyOtpMessage = true;
             else
@@ -105,7 +106,6 @@ export class CommonLoginComponent implements OnInit {
         this.isLoading = false;
       },
       (error: any) => {
-        console.error(error);
         this.backendapi.snakBarMethod(error.error.message, false);
         this.isLoading = false;
       }

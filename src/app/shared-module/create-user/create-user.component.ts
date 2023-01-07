@@ -29,8 +29,8 @@ export class CreateUserComponent implements OnInit {
     
     this.RegistrationForm = this.fb.group({
       usersList: ['', Validators.required],
-      firstName: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{1,}/)]],
-      lastName: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-z]).{2,}/)]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
+      lastName: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]],
       EmailAddress: ['', [Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
@@ -59,7 +59,6 @@ export class CreateUserComponent implements OnInit {
     }
     this.backend.adduser(backendRegister).subscribe(
       (data:any) =>{
-        console.log(data);
         if(data.status==true){
           if(data.otpStatus==true){
             const dialogRef = this.matdialog.open(OtpComponet, {
@@ -69,11 +68,10 @@ export class CreateUserComponent implements OnInit {
             this.backend.snakBarMethod(data["message"],data["otpStatus"]);
             this.isLoading = false;
           }
-          this.router.navigate(['admin/user-management']);
+          this.router.navigate(['u/admin/user-management']);
         }
       },
       (error:any) =>{
-        console.error(error);
         this.backend.snakBarMethod(error.error["message"],false);
         this.isLoading = false;
       }

@@ -6,7 +6,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
-import { SharedModuleModule } from '../shared-module/shared-module.module'
+ import { SharedModuleModule } from '../shared-module/shared-module.module'
 
 //angular material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,9 +19,15 @@ import { CommonLoginComponent } from './common-login/common-login.component';
 import { CommonRegistrationComponent } from './common-registration/common-registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { CommonNewPasswordComponent } from './common-new-password/common-new-password.component';
+import { RouterModule, Routes } from '@angular/router';  
 
-
-
+const routes:Routes =[
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: CommonLoginComponent },
+  { path: 'register', component: CommonRegistrationComponent },
+  {  path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'new-password', component: CommonNewPasswordComponent }
+]
 @NgModule({
   declarations: [CommonLoginComponent, CommonRegistrationComponent, ForgotPasswordComponent, CommonNewPasswordComponent],
   imports: [
@@ -32,7 +38,8 @@ import { CommonNewPasswordComponent } from './common-new-password/common-new-pas
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModuleModule
+    SharedModuleModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class InputFormsModule { }

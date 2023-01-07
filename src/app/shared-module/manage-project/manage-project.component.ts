@@ -21,6 +21,6 @@ export class ManageProjectComponent implements OnInit {
   }
 
   navigate(projectNumber:string){
-    this.router.navigate([`project/details/${projectNumber}`]);
+    this.router.navigate([`u/project/details/${projectNumber}`]);
   }
 }

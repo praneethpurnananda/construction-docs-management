@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,Validators,FormBuilder} from '@angular/forms';
+import { passwordValidation } from 'src/app/common-files/passwordValidation';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CommonNewPasswordComponent implements OnInit {
   constructor(private fb:FormBuilder) {
     this.newPasswordForm=this.fb.group({
       newPassword:['',[Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]],
-      confirmNewPassword:['',[Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)]]
+      confirmNewPassword:['',[Validators.required,passwordValidation]]
     })
   }
    

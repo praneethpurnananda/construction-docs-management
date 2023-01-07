@@ -16,6 +16,6 @@ export class UserManagementComponent implements OnInit {
   }
 
   navigate(url:string){
-    this.router.navigate(['/admin/'+url])
+    this.router.navigate(['/u/admin/'+url])
   }
 }

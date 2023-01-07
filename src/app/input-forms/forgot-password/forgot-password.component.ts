@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, Form } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -8,8 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.css', '../common-styles.css']
 })
 export class ForgotPasswordComponent implements OnInit {
+  forgotPasswordFormPhone:FormGroup;
+  forgotPasswordFormOTP:FormGroup
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private fb: FormBuilder) { 
+    this.forgotPasswordFormPhone=this.fb.group({
+      phone:['',[Validators.required, Validators.pattern(/^[0-9]{10,10}$/)]]
+    });
+    this.forgotPasswordFormOTP=this.fb.group({
+      otp:['',[Validators.required]]
+    })
+  }
 
   ngOnInit(): void {
   }

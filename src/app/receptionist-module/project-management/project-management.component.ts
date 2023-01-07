@@ -13,7 +13,6 @@ export class ReceptionProjectManagementComponent implements OnInit {
   ngOnInit(): void {
   }
   navigate(url:string){
-    console.log("asdsadsadasd");
     this.router.navigate([url])
   }
 }

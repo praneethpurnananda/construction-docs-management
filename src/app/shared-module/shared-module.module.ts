@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from '../app-routing.module';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatTableModule } from '@angular/material/table';
@@ -31,15 +31,56 @@ import { PreloderComponent } from './preloder/preloder.component';
 import { CommonApiResponceUiComponent } from './common-api-responce-ui/common-api-responce-ui.component';
 import { OtpComponet } from './popups/opt.component';
 import { editUserPopupComponent } from './popups/editUserPopup'
+import { RouterModule, Routes } from '@angular/router';  
+import { ProjectManagementComponent } from '../admin-module/project-management/project-management.component';
+import { UserManagementComponent } from '../admin-module/user-management/user-management.component';
+import { PaymentManagementComponent } from '../admin-module/payment-management/payment-management.component';
+import { ReceptionProjectManagementComponent } from '../receptionist-module/project-management/project-management.component';
+import { ReceptionUerManagementComponent } from '../receptionist-module/uer-management/uer-management.component';
+import { ReceptionPaymentManagementComponent } from '../receptionist-module/payment-management/payment-management.component';
 
+const routes:Routes =[
+ { path:'admin', component:MainLayoutComponent, children:[
+    { path: 'projet-management', component: ProjectManagementComponent },
+    { path: 'dashboard', component: CommonDashboardComponent },
+    { path: 'user-management', component: UserManagementComponent },
+    { path: 'create-user', component: CreateUserComponent },
+    { path: 'create-project', component:CreateProjectComponent},
+    { path: 'payment-management', component:PaymentManagementComponent}
+  ]},
 
+  { path:'reception', component:MainLayoutComponent, children:[
+    { path: 'projet-management', component: ReceptionProjectManagementComponent },
+    { path: 'dashboard', component: CommonDashboardComponent },
+    { path: 'user-management', component: ReceptionUerManagementComponent },
+    { path: 'create-user', component: CreateUserComponent },
+    { path: 'create-project', component:CreateProjectComponent},
+    { path: 'payment-management', component:ReceptionPaymentManagementComponent}
+  ]},
 
+  { path: 'project',component: MainLayoutComponent, children:[
+        { path: 'details/:id', component:ProjectDetailedViewComponent},
+      ]
+    },
+
+    { path: 'customer',component:MainLayoutComponent, children:[
+        // { path: 'dashboard'},
+        // { path: 'projects'}
+      ]
+    },
+
+    { path: 'employee',component:MainLayoutComponent, children:[
+        // { path: 'dashboard'},
+        // { path: 'customer-details'}
+      ]
+    }
+
+]
 
 @NgModule({
   declarations: [CreateUserComponent, ManageUserComponent, MainLayoutComponent, CommonDashboardComponent, CreateProjectComponent, ManageProjectComponent, ProjectDetailedViewComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent, OtpComponet,editUserPopupComponent],
   imports: [
     CommonModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatTableModule,
@@ -53,8 +94,8 @@ import { editUserPopupComponent } from './popups/editUserPopup'
     MatSidenavModule,
     MatProgressBarModule,
     MatSnackBarModule,
-    MatDialogModule
-
+    MatDialogModule,
+    RouterModule.forChild(routes)
   ],
   exports: [ManageUserComponent, ManageProjectComponent, ManagePaymentComponent, PreloderComponent, CommonApiResponceUiComponent]
 })

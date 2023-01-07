@@ -13,6 +13,6 @@ export class ReceptionUerManagementComponent implements OnInit {
   ngOnInit(): void {
   }
   navigate(url:string){
-    this.router.navigate(['/reception/'+url])
+    this.router.navigate(['/u/reception/'+url])
   }
 }

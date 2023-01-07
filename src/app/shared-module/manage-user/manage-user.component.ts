@@ -29,7 +29,6 @@ export class ManageUserComponent implements OnInit {
   backenddata(){
     this.backend.getAllUsers().subscribe(
       (data:any) =>{
-        console.log(data);
         this.dataSource=data;
       },
       (error:any) =>{
@@ -43,7 +42,6 @@ export class ManageUserComponent implements OnInit {
     console.log(element);
     this.backend.deleteuser(elementValue).subscribe(
       (data:any) =>{
-        console.log(data)
         if(data.status===true){
           this.backenddata();
         }
